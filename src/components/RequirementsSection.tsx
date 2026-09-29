@@ -31,8 +31,9 @@ export const RequirementsSection: React.FC<RequirementsSectionProps> = ({ onOpen
             <div className="flex items-center gap-3 mb-6">
               <span className="text-3xl">🛵</span>
               <div>
-                <h3 className="font-bold text-stone-900 text-xl">أوراق سائقي الموتوسيكل</h3>
-                <p className="text-xs text-stone-500">للعمل بمركبة نارية خاصة بك</p>
+                <span className="text-xs font-bold text-orange-600 bg-orange-100/70 px-2 py-0.5 rounded">ده مكنة</span>
+                <h3 className="font-bold text-stone-900 text-xl mt-1">الأوراق المطلوبة للتقديم (مكنة)</h3>
+                <p className="text-xs text-stone-500">سائقي الموتوسيكل في زون مصر الجديدة ومدينة نصر</p>
               </div>
             </div>
 
@@ -40,14 +41,14 @@ export const RequirementsSection: React.FC<RequirementsSectionProps> = ({ onOpen
               {REQUIREMENTS_DATA.motorcycle.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-orange-600 shrink-0 mt-0.5" />
-                  <span>{item}</span>
+                  <span className="font-medium">{item}</span>
                 </li>
               ))}
             </ul>
 
             <div className="mt-6 pt-5 border-t border-stone-200 text-xs text-stone-500 flex items-center gap-2">
               <AlertCircle className="w-4 h-4 text-orange-600 shrink-0" />
-              <span>يتم مراجعة أصل الرخص والبطاقة والتأكد من سريانها في مقر المكتب.</span>
+              <span>جاهز بالصور؟ تقدر تبعتها فوراً عبر واتساب لمشرف المكتب لاستكمال تفعيل الأكونت.</span>
             </div>
           </div>
 
@@ -56,8 +57,9 @@ export const RequirementsSection: React.FC<RequirementsSectionProps> = ({ onOpen
             <div className="flex items-center gap-3 mb-6">
               <span className="text-3xl">🚲</span>
               <div>
-                <h3 className="font-bold text-stone-900 text-xl">أوراق سائقي العجل والواكر</h3>
-                <p className="text-xs text-stone-500">للعمل بدراجة عادية أو مشياً على الأقدام</p>
+                <span className="text-xs font-bold text-emerald-700 bg-emerald-100/70 px-2 py-0.5 rounded">ده عجلة أو واكر</span>
+                <h3 className="font-bold text-stone-900 text-xl mt-1">الأوراق المطلوبة للتقديم (عجلة)</h3>
+                <p className="text-xs text-stone-500">سائقي العجل وتوصيل المشي في زون مصر الجديدة ومدينة نصر</p>
               </div>
             </div>
 
@@ -65,14 +67,14 @@ export const RequirementsSection: React.FC<RequirementsSectionProps> = ({ onOpen
               {REQUIREMENTS_DATA.bicycle_walker.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
-                  <span>{item}</span>
+                  <span className="font-medium">{item}</span>
                 </li>
               ))}
             </ul>
 
             <div className="mt-6 pt-5 border-t border-stone-200 text-xs text-stone-500 flex items-center gap-2">
               <AlertCircle className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>لا يُشترط أي رخصة قيادة أو تراخيص دراجة، التقديم بالبطاقة فقط!</span>
+              <span>بدون رخص قيادة! التقديم متاح فوراً بصورة البطاقة والسيلفي ورقم التلفون فقط.</span>
             </div>
           </div>
         </div>

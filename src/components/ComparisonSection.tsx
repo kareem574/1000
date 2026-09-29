@@ -47,7 +47,7 @@ export const ComparisonSection: React.FC = () => {
               </div>
               <div className="flex justify-between">
                 <span className="text-stone-500">المتطلبات:</span>
-                <span className="text-stone-800 font-medium">رخص قيادة ودراجة سارية</span>
+                <span className="text-stone-800 font-medium">بطاقة + رخصة + سيلفي + تليفون</span>
               </div>
             </div>
           </div>
@@ -60,7 +60,7 @@ export const ComparisonSection: React.FC = () => {
                 بدون وقود وبدء فوري
               </span>
             </div>
-            <h3 className="text-xl font-bold text-stone-900 mb-2">سائقي العجل (Bicycle)</h3>
+            <h3 className="text-xl font-bold text-stone-900 mb-2">سائقي العجل (ده عجلة)</h3>
             <p className="text-xs text-stone-600 leading-relaxed mb-4">
               ممتاز للشباب والطلبة، يتيح لك تحقيق دخل مرتفع دون أي مصاريف بنزين أو الحاجة لرخصة قيادة، بأوردرات قريبة.
             </p>
@@ -75,7 +75,7 @@ export const ComparisonSection: React.FC = () => {
               </div>
               <div className="flex justify-between">
                 <span className="text-stone-500">المتطلبات:</span>
-                <span className="text-stone-800 font-medium">بطاقة رقم قومي وفيش فقط</span>
+                <span className="text-stone-800 font-medium">بطاقة + سيلفي + تليفون فقط</span>
               </div>
             </div>
           </div>
@@ -88,7 +88,7 @@ export const ComparisonSection: React.FC = () => {
                 بدون أي مركبة
               </span>
             </div>
-            <h3 className="text-xl font-bold text-stone-900 mb-2">الواكر (مشياً على الأقدام)</h3>
+            <h3 className="text-xl font-bold text-stone-900 mb-2">الواكر (توصيل مشي)</h3>
             <p className="text-xs text-stone-600 leading-relaxed mb-4">
               توصيل الأوردرات مشياً داخل المربعات السكنية والتجارية المغلقة (مثل محيط الكوربة أو شارع عباس العقاد) بدون أي مركبة.
             </p>
@@ -103,7 +103,7 @@ export const ComparisonSection: React.FC = () => {
               </div>
               <div className="flex justify-between">
                 <span className="text-stone-500">المتطلبات:</span>
-                <span className="text-stone-800 font-medium">بطاقة رقم قومي وفيش فقط</span>
+                <span className="text-stone-800 font-medium">بطاقة + سيلفي + تليفون فقط</span>
               </div>
             </div>
           </div>

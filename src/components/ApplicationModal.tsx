@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, Send, CheckCircle2, MessageSquare, PhoneCall } from 'lucide-react';
 import { VehicleType, ApplicationFormData } from '../types';
 import { OFFICE_CONTACT } from '../data/pricingData';
+import { Logo } from './Logo';
 
 interface ApplicationModalProps {
   isOpen: boolean;
@@ -50,23 +51,25 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({ isOpen, onCl
     setSubmitted(true);
   };
 
+  const isMotorcycle = formData.vehicleType === 'motorcycle';
+
   const getWhatsAppMessage = () => {
-    const text = `السلام عليكم، حابب أقدم على شغل كابتن دليفري طلبات مع شركة العز اكسبريس (مكتب العز):
+    const papers = isMotorcycle
+      ? '1. صورة البطاقة أمامي وخلفي\n2. صورة الرخصة أمامي وخلفي\n3. صورة سيلفي خلفية سادة\n4. رقم التلفون: ' + formData.phone
+      : '1. صورة البطاقة أمامي وخلفي\n2. صورة سيلفي خلفية سادة\n3. رقم التلفون: ' + formData.phone;
+
+    const text = `السلام عليكم، حابب أقدم على شغل كابتن دليفري طلبات مع شركة العز اكسبريس:
 - كود الطلب: ${referenceNumber || 'جديد'}
 - الاسم: ${formData.fullName}
 - التليفون: ${formData.phone}
-- الرقم القومي: ${formData.nationalId || 'مرفق عند المقابلة'}
-- وسيلة التوصيل: ${
-      formData.vehicleType === 'motorcycle'
-        ? 'موتوسيكل'
-        : formData.vehicleType === 'bicycle'
-        ? 'عجلة'
-        : 'واكر (مشي)'
-    }
+- وسيلة التوصيل: ${isMotorcycle ? 'مكنة (موتوسيكل) 🛵' : formData.vehicleType === 'bicycle' ? 'عجلة 🚲' : 'واكر (مشي) 🚶‍♂️'}
 - المنطقة المفضلة: ${formData.zone}
 - خبرة سابقة: ${formData.workExperience}
-${formData.notes ? `- ملاحظات: ${formData.notes}` : ''}
-جاهز لاستكمال الأوراق وتفعيل الحساب ونزول الشيفتات.`;
+
+*الأوراق المطلوب تسليمها:*
+${papers}
+${formData.notes ? `\n- ملاحظات إضافية: ${formData.notes}` : ''}
+جاهز لإرسال صور الأوراق لبدء تفعيل الحساب والنزول للشغل مع مكتب العز.`;
     return encodeURIComponent(text);
   };
 
@@ -103,23 +106,43 @@ ${formData.notes ? `- ملاحظات: ${formData.notes}` : ''}
               {referenceNumber}
             </div>
 
-            <div className="p-4 bg-orange-50 rounded-xl border border-orange-200 text-xs text-orange-950 text-right space-y-2 mt-4">
-              <div className="font-bold text-sm">الخطوة القادمة:</div>
+            {/* Checklist of required papers */}
+            <div className="p-4 bg-stone-50 rounded-xl border border-stone-200 text-right text-xs space-y-2">
+              <div className="font-bold text-stone-900 text-sm">
+                الأوراق المطلوب إرسالها الآن على واتساب المشرف:
+              </div>
+              {isMotorcycle ? (
+                <ul className="space-y-1.5 text-stone-700 font-medium list-disc list-inside">
+                  <li>صورة البطاقة أمامي وخلفي</li>
+                  <li>صورة الرخصة أمامي وخلفي</li>
+                  <li>صورة سيلفي خلفية سادة</li>
+                  <li>رقم التلفون: <span className="font-bold">{formData.phone}</span></li>
+                </ul>
+              ) : (
+                <ul className="space-y-1.5 text-stone-700 font-medium list-disc list-inside">
+                  <li>صورة البطاقة أمامي وخلفي</li>
+                  <li>صورة سيلفي خلفية سادة</li>
+                  <li>رقم التلفون: <span className="font-bold">{formData.phone}</span></li>
+                </ul>
+              )}
+            </div>
+
+            <div className="p-3 bg-orange-50 rounded-xl border border-orange-200 text-xs text-orange-950 text-right space-y-1">
               <p>
-                فريق مكتب العز سيتواصل معك هاتفياً عبر الرقم <strong>01021673630</strong> لتحديد موعد المقابلة وتفعيل الحساب.
+                فريق مكتب العز سيتواصل معك عبر الرقم <strong>01021673630</strong>.
               </p>
-              <p className="text-orange-800">
-                لتسريع إجراءاتك والتواصل الفوري، اضغط على زر الواتساب بالأسفل لإرسال بياناتك مباشرة لمشرف التشغيل.
+              <p className="text-orange-800 font-bold">
+                اضغط على الزر الأخضر بالأسفل لإرسال الصور والبيانات فوراً إلى واتساب المشرف:
               </p>
             </div>
 
-            <div className="pt-4 flex flex-col sm:flex-row gap-3">
+            <div className="pt-2 flex flex-col sm:flex-row gap-3">
               <button
                 onClick={handleWhatsAppDirect}
                 className="flex-1 py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm flex items-center justify-center gap-2 cursor-pointer shadow-sm"
               >
                 <MessageSquare className="w-4 h-4" />
-                <span>إرسال البيانات لواتساب (01021673630)</span>
+                <span>إرسال الصور للأوراق عبر واتساب</span>
               </button>
 
               <button
@@ -133,17 +156,19 @@ ${formData.notes ? `- ملاحظات: ${formData.notes}` : ''}
         ) : (
           /* Form Content */
           <div>
-            <div className="mb-5">
-              <div className="flex items-center justify-between mb-2">
+            <div className="mb-5 flex items-start justify-between">
+              <div>
                 <span className="text-xs font-bold text-orange-600">تسجيل كابتن جديد</span>
-                <span className="text-xs font-mono text-stone-500 font-bold">01021673630</span>
+                <h3 className="text-xl sm:text-2xl font-black text-stone-900 mt-1">
+                  نموذج التقديم للعمل مع طلبات
+                </h3>
+                <p className="text-xs text-stone-500 mt-0.5">
+                  مكتب العز اكسبريس | هاتف التقديم: <span className="font-bold text-stone-700">01021673630</span>
+                </p>
               </div>
-              <h3 className="text-xl sm:text-2xl font-black text-stone-900 mt-1">
-                نموذج التقديم للعمل مع طلبات
-              </h3>
-              <p className="text-xs text-stone-500 mt-1">
-                سجل بياناتك وسيتم التواصل معك من مكتب العز لاستكمال أوراقك وتفعيل الحساب.
-              </p>
+              <div className="p-1 bg-stone-50 rounded-xl hidden sm:block">
+                <Logo size="sm" showSubtitle={false} />
+              </div>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -157,7 +182,7 @@ ${formData.notes ? `- ملاحظات: ${formData.notes}` : ''}
                   required
                   value={formData.fullName}
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                  placeholder="مثال: كريم العز عبد الرحمن"
+                  placeholder="مثال: محمد أحمد علي"
                   className="w-full border border-stone-300 rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                 />
               </div>
@@ -165,7 +190,7 @@ ${formData.notes ? `- ملاحظات: ${formData.notes}` : ''}
               {/* Phone */}
               <div>
                 <label className="block text-xs font-bold text-stone-800 mb-1">
-                  رقم الهاتف (الواتساب للتواصل) <span className="text-red-500">*</span>
+                  رقم الهاتف (الواتساب للتواصل واستلام الصور) <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="tel"
@@ -180,11 +205,11 @@ ${formData.notes ? `- ملاحظات: ${formData.notes}` : ''}
               {/* Vehicle Selection */}
               <div>
                 <label className="block text-xs font-bold text-stone-800 mb-1">
-                  وسيلة التوصيل المطلوبة <span className="text-red-500">*</span>
+                  وسيلة التوصيل <span className="text-red-500">*</span>
                 </label>
                 <div className="grid grid-cols-3 gap-2">
                   {[
-                    { id: 'motorcycle', label: 'موتوسيكل 🛵' },
+                    { id: 'motorcycle', label: 'مكنة (موتوسيكل) 🛵' },
                     { id: 'bicycle', label: 'عجلة 🚲' },
                     { id: 'walker', label: 'واكر (مشي) 🚶‍♂️' }
                   ].map((v) => (
@@ -202,6 +227,30 @@ ${formData.notes ? `- ملاحظات: ${formData.notes}` : ''}
                     </button>
                   ))}
                 </div>
+              </div>
+
+              {/* Explicit Required Papers Checklist Box */}
+              <div className="p-3.5 bg-orange-50/80 rounded-xl border border-orange-200 text-xs text-stone-800 space-y-1.5">
+                <div className="font-bold text-orange-950 flex items-center justify-between">
+                  <span>الأوراق المطلوبة للتقديم ({isMotorcycle ? 'ده مكنة' : 'ده عجلة'}):</span>
+                  <span className="text-[10px] bg-orange-200 text-orange-900 px-2 py-0.5 rounded font-bold">
+                    {isMotorcycle ? '4 أوراق أساسية' : '3 أوراق أساسية'}
+                  </span>
+                </div>
+                {isMotorcycle ? (
+                  <ol className="list-decimal list-inside space-y-1 text-stone-700 font-semibold">
+                    <li>صورة البطاقة أمامي وخلفي</li>
+                    <li>صورة الرخصة أمامي وخلفي</li>
+                    <li>صورة سيلفي خلفية سادة</li>
+                    <li>رقم التلفون الشخصي</li>
+                  </ol>
+                ) : (
+                  <ol className="list-decimal list-inside space-y-1 text-stone-700 font-semibold">
+                    <li>صورة البطاقة أمامي وخلفي</li>
+                    <li>صورة سيلفي خلفية سادة</li>
+                    <li>رقم التلفون الشخصي</li>
+                  </ol>
+                )}
               </div>
 
               {/* Zone */}
@@ -236,43 +285,32 @@ ${formData.notes ? `- ملاحظات: ${formData.notes}` : ''}
                 </select>
               </div>
 
-              {/* Motorcycle Specific checks */}
-              {formData.vehicleType === 'motorcycle' && (
-                <div className="p-3 bg-stone-50 rounded-lg border border-stone-200 space-y-2">
-                  <div className="text-xs font-bold text-stone-800">تأكيد الرخص:</div>
-                  <label className="flex items-center gap-2 text-xs text-stone-700 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={formData.hasDrivingLicense}
-                      onChange={(e) => setFormData({ ...formData, hasDrivingLicense: e.target.checked })}
-                      className="accent-orange-600 rounded"
-                    />
-                    <span>أمتلك رخصة قيادة سارية</span>
-                  </label>
-                  <label className="flex items-center gap-2 text-xs text-stone-700 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={formData.hasMotorcycleLicense}
-                      onChange={(e) => setFormData({ ...formData, hasMotorcycleLicense: e.target.checked })}
-                      className="accent-orange-600 rounded"
-                    />
-                    <span>أمتلك رخصة تسيير دراجة نارية سارية</span>
-                  </label>
-                </div>
-              )}
+              {/* Notes */}
+              <div>
+                <label className="block text-xs font-bold text-stone-800 mb-1">
+                  ملاحظات أو استفسار إضافي (اختياري)
+                </label>
+                <input
+                  type="text"
+                  value={formData.notes || ''}
+                  onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                  placeholder="أي استفسار بخصوص مواعيد العمل أو المقابلة"
+                  className="w-full border border-stone-300 rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                />
+              </div>
 
               {/* Submit Buttons */}
               <div className="pt-2 flex flex-col gap-2.5">
                 <button
                   type="submit"
-                  className="w-full py-3 text-center text-sm font-bold text-white bg-orange-600 hover:bg-orange-700 rounded-xl shadow-md transition-colors cursor-pointer flex items-center justify-center gap-2"
+                  className="w-full py-3.5 text-center text-sm font-bold text-white bg-orange-600 hover:bg-orange-700 rounded-xl shadow-md transition-colors cursor-pointer flex items-center justify-center gap-2"
                 >
                   <Send className="w-4 h-4" />
                   <span>تأكيد التسجيل وإرسال الطلب</span>
                 </button>
 
                 <p className="text-[11px] text-stone-500 text-center">
-                  بياناتك مشفرة ومحفوظة بأمان لمتابعة التقديم عبر مكتب العز اكسبريس فقط.
+                  سيتم تجهيز رسالة الواتساب مباشرة لإرسال صور الأوراق لمشرف مكتب العز (01021673630).
                 </p>
               </div>
             </form>
