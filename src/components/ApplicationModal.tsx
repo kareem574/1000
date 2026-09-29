@@ -251,6 +251,10 @@ ${formData.notes ? `\n- ملاحظات إضافية: ${formData.notes}` : ''}
                     <li>رقم التلفون الشخصي</li>
                   </ol>
                 )}
+                <div className="text-[11px] text-emerald-800 bg-emerald-100/80 p-2 rounded-lg mt-2 font-bold flex items-center gap-1.5">
+                  <span>✓</span>
+                  <span>مش مطلوب فيش جنائي نهائياً! بيتم عمل استعلام أمني بديل الفيش.</span>
+                </div>
               </div>
 
               {/* Zone */}

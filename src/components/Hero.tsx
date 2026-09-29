@@ -18,9 +18,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenApply }) => {
           {/* Main Hero Content (7 cols) */}
           <div className="lg:col-span-7 space-y-6 text-right">
             {/* Trust kicker */}
-            <div className="inline-flex items-center gap-2 text-xs font-bold text-orange-700 bg-orange-100/80 border border-orange-200/90 px-3 py-1.5 rounded-md">
-              <Zap className="w-3.5 h-3.5 text-orange-600 animate-pulse" />
-              <span>وكيل معتمد لشركة طلبات (Talabat) | مكتب العز اكسبريس</span>
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="inline-flex items-center gap-2 text-xs font-bold text-orange-700 bg-orange-100/80 border border-orange-200/90 px-3 py-1.5 rounded-md">
+                <Zap className="w-3.5 h-3.5 text-orange-600 animate-pulse" />
+                <span>وكيل معتمد لشركة طلبات (Talabat) | مكتب العز اكسبريس</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-3 py-1.5 rounded-md">
+                <span>✓</span>
+                <span>مش مطلوب فيش جنائي (استعلام أمني بديل)</span>
+              </div>
             </div>
 
             {/* Main Headline */}

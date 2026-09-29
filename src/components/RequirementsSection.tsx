@@ -24,6 +24,24 @@ export const RequirementsSection: React.FC<RequirementsSectionProps> = ({ onOpen
           </p>
         </div>
 
+        {/* Security Inquiry / No Feesh Callout Banner */}
+        <div className="mb-10 p-4 sm:p-5 bg-gradient-to-r from-emerald-50 via-emerald-100/60 to-emerald-50 rounded-2xl border-2 border-emerald-300 flex items-center gap-4 text-right shadow-xs">
+          <div className="w-12 h-12 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 text-xl font-bold shadow-xs">
+            ✓
+          </div>
+          <div>
+            <h3 className="font-bold text-emerald-950 text-base sm:text-lg flex items-center gap-2">
+              <span>مش مطلوب فيش جنائي نهائياً!</span>
+              <span className="text-xs bg-emerald-700 text-white px-2 py-0.5 rounded-full font-normal">
+                بديل الفيش
+              </span>
+            </h3>
+            <p className="text-xs sm:text-sm text-emerald-900/90 mt-1 leading-relaxed">
+              لتسهيل وسرعة بدء العمل، يتم عمل <strong>استعلام أمني رسمي وسريع</strong> من خلال مكتب العز كبديل للفيش الجنائي، بدون الحاجة للذهاب إلى أقسام الشرطة أو الانتظار.
+            </p>
+          </div>
+        </div>
+
         {/* 2 Main Requirement Boxes (Motorcycle vs Bicycle/Walker) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {/* Motorcycle Requirements */}
