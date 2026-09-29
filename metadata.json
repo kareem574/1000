@@ -1,0 +1,6 @@
+{
+  "name": "بوابة كباتن طلبات - مكتب العز اكسبريس",
+  "description": "دليل العمل والتسعيرة وحاسبة الدخل ومقارنة الأرباح لسائقي الموتوسيكل والعجل والواكر مع طلبات مصر الجديدة ومدينة نصر",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
